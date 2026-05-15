@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Receitas da Terra Santa — A Mesa de Jesus</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9973A;
+    --gold-light: #E8C06A;
+    --gold-pale: #F5E4B0;
+    --brown-dark: #1A0E05;
+    --brown: #3B1F08;
+    --brown-mid: #6B3A1F;
+    --parchment: #F2E8C9;
+    --parchment-dark: #D9C89A;
+    --red-earth: #8B3A1A;
+    --olive: #4A5C2A;
+    --cream: #FAF5E4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--brown-dark);
+    color: var(--parchment);
+    font-family: 'Libre Baskerville', serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, #5C2D0A 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 20% 80%, #3B1500 0%, transparent 60%),
+      linear-gradient(180deg, #0D0600 0%, #1A0E05 40%, #0D0600 100%);
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,151,58,0.18) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse-glow 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
+  }
+
+  .hero-ornament {
+    font-size: clamp(28px, 5vw, 48px);
+    color: var(--gold);
+    letter-spacing: 12px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.2s;
+    margin-bottom: 16px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(10px, 1.5vw, 13px);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.4s;
+    margin-bottom: 28px;
+  }
+
+  .hero-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(36px, 7vw, 90px);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--gold-light);
+    text-shadow:
+      0 0 60px rgba(201,151,58,0.5),
+      0 2px 0 rgba(0,0,0,0.8);
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards 0.6s;
+    margin-bottom: 12px;
+    max-width: 900px;
+  }
+
+  .hero-title span {
+    display: block;
+    font-size: 0.55em;
+    color: var(--gold);
+    letter-spacing: 4px;
+    font-weight: 400;
+    margin-top: 8px;
+  }
+
+  .hero-sub {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: clamp(17px, 2.5vw, 24px);
+    color: var(--parchment-dark);
+    max-width: 620px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.9s;
+    margin: 24px auto 48px;
+  }
+
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0 auto 44px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.1s;
+  }
+
+  .hero-divider .line {
+    height: 1px;
+    width: 80px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .hero-divider .star { color: var(--gold); font-size: 18px; }
+
+  .btn-cta {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--brown-dark);
+    background: linear-gradient(135deg, var(--gold-light), var(--gold), #A07020);
+    padding: 20px 52px;
+    text-decoration: none;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(201,151,58,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.3s;
+    cursor: pointer;
+  }
+
+  .btn-cta::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -80%;
+    width: 60%;
+    height: 200%;
+    background: rgba(255,255,255,0.2);
+    transform: skewX(-20deg);
+    transition: left 0.5s;
+  }
+
+  .btn-cta:hover::before { left: 130%; }
+  .btn-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px rgba(201,151,58,0.55), inset 0 1px 0 rgba(255,255,255,0.3);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--gold);
+    font-size: 22px;
+    animation: bounce 2s ease-in-out infinite;
+    opacity: 0.7;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(10px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 100px 20px; }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(26px, 4vw, 48px);
+    color: var(--gold-light);
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .section-sub {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--parchment-dark);
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 64px;
+    line-height: 1.8;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+    margin: 20px auto 48px;
+  }
+
+  .divider .line {
+    height: 1px;
+    width: 60px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .divider .cross { color: var(--gold); font-size: 14px; }
+
+  /* ── FEATURES STRIP ── */
+  .features-strip {
+    background: linear-gradient(180deg, #0D0600 0%, #1A0C02 50%, #0D0600 100%);
+    border-top: 1px solid rgba(201,151,58,0.2);
+    border-bottom: 1px solid rgba(201,151,58,0.2);
+    padding: 60px 20px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 48px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .feature-item .icon {
+    font-size: 42px;
+    margin-bottom: 16px;
+    display: block;
+    filter: drop-shadow(0 0 12px rgba(201,151,58,0.5));
+  }
+
+  .feature-item h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+  }
+
+  .feature-item p {
+    font-size: 14px;
+    color: var(--parchment-dark);
+    line-height: 1.7;
+  }
+
+  /* ── RECIPES PREVIEW ── */
+  .recipes-section {
+    background: linear-gradient(180deg, #0D0600, #140900 50%, #0D0600);
+  }
+
+  .recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+  }
+
+  .recipe-card {
+    background: linear-gradient(145deg, #1F0F04, #2A1508);
+    border: 1px solid rgba(201,151,58,0.25);
+    border-radius: 4px;
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s, box-shadow 0.4s, border-color 0.4s;
+  }
+
+  .recipe-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .recipe-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(201,151,58,0.1);
+    border-color: rgba(201,151,58,0.5);
+  }
+
+  .recipe-card:hover::before { opacity: 1; }
+
+  .recipe-emoji {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+  }
+
+  .recipe-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .recipe-name {
+    font-family: 'Cinzel', serif;
+    font-size: 19px;
+    color: var(--gold-light);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .recipe-desc {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--parchment-dark);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .recipe-verse {
+    font-size: 12px;
+    color: rgba(201,151,58,0.7);
+    font-style: italic;
+    padding-top: 16px;
+    border-top: 1px solid rgba(201,151,58,0.15);
+  }
+
+  /* ── PARCHMENT QUOTE ── */
+  .quote-section {
+    background: var(--brown-dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-section::before {
+    content: '❝';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 200px;
+    color: rgba(201,151,58,0.05);
+    font-family: serif;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .quote-box {
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 80px 40px;
+    background: linear-gradient(145deg, #1F0F04, #2A1508);
+    border: 1px solid rgba(201,151,58,0.2);
+    position: relative;
+  }
+
+  .quote-box::before, .quote-box::after {
+    content: '✦';
+    position: absolute;
+    color: var(--gold);
+    font-size: 20px;
+  }
+
+  .quote-box::before { top: 24px; left: 24px; }
+  .quote-box::after { bottom: 24px; right: 24px; }
+
+  .quote-text {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: clamp(20px, 3vw, 30px);
+    color: var(--gold-pale);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .quote-ref {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── WHAT'S INSIDE ── */
+  .inside-section {
+    background: linear-gradient(180deg, #0D0600 0%, #140900 100%);
+  }
+
+  .inside-list {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .inside-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px 28px;
+    background: linear-gradient(135deg, #1F0F04, #2A1508);
+    border: 1px solid rgba(201,151,58,0.2);
+    border-left: 3px solid var(--gold);
+    border-radius: 2px;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .inside-item:hover {
+    transform: translateX(6px);
+    border-left-color: var(--gold-light);
+  }
+
+  .inside-item .num {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 28px;
+    color: rgba(201,151,58,0.3);
+    line-height: 1;
+    min-width: 40px;
+  }
+
+  .inside-item h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    color: var(--gold-light);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .inside-item p {
+    font-size: 14px;
+    color: var(--parchment-dark);
+    line-height: 1.6;
+  }
+
+  /* ── PRICE / OFFER ── */
+  .offer-section {
+    background: radial-gradient(ellipse at center, #2A1100 0%, #0D0600 70%);
+    text-align: center;
+  }
+
+  .price-box {
+    display: inline-block;
+    background: linear-gradient(145deg, #1F0F04, #2A1508);
+    border: 1px solid rgba(201,151,58,0.35);
+    padding: 60px 80px;
+    position: relative;
+    max-width: 520px;
+    width: 100%;
+  }
+
+  .price-box::before, .price-box::after {
+    content: '';
+    position: absolute;
+    border: 2px solid rgba(201,151,58,0.2);
+    width: 40px;
+    height: 40px;
+  }
+
+  .price-box::before { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+  .price-box::after { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+  .offer-badge {
+    display: inline-block;
+    background: var(--red-earth);
+    color: var(--gold-pale);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    margin-bottom: 28px;
+    animation: shimmer-badge 2s ease-in-out infinite;
+  }
+
+  @keyframes shimmer-badge {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  .price-old {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 16px;
+    color: rgba(201,151,58,0.4);
+    text-decoration: line-through;
+    margin-bottom: 8px;
+  }
+
+  .price-main {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(52px, 8vw, 80px);
+    color: var(--gold-light);
+    line-height: 1;
+    text-shadow: 0 0 40px rgba(201,151,58,0.4);
+    margin-bottom: 4px;
+  }
+
+  .price-main sup { font-size: 0.4em; vertical-align: super; }
+  .price-main sub { font-size: 0.3em; vertical-align: baseline; }
+
+  .price-note {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--parchment-dark);
+    margin-bottom: 32px;
+  }
+
+  .price-guarantee {
+    font-size: 12px;
+    color: rgba(201,151,58,0.6);
+    margin-top: 20px;
+    font-style: italic;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    background: linear-gradient(180deg, #0D0600 0%, #1A0C02 100%);
+  }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+  }
+
+  .testi-card {
+    background: linear-gradient(145deg, #1F0F04, #2A1508);
+    border: 1px solid rgba(201,151,58,0.18);
+    padding: 32px 28px;
+    position: relative;
+    border-radius: 2px;
+  }
+
+  .testi-card::before {
+    content: '"';
+    font-size: 80px;
+    color: rgba(201,151,58,0.12);
+    font-family: serif;
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    line-height: 1;
+  }
+
+  .stars {
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .testi-text {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--parchment-dark);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .testi-author {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── FAQ ── */
+  .faq-section {
+    background: var(--brown-dark);
+  }
+
+  .faq-list { max-width: 720px; margin: 0 auto; }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(201,151,58,0.15);
+    padding: 28px 0;
+  }
+
+  .faq-q {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    color: var(--gold-light);
+    margin-bottom: 12px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .faq-q .faq-icon { color: var(--gold); flex-shrink: 0; }
+
+  .faq-a {
+    font-size: 15px;
+    color: var(--parchment-dark);
+    line-height: 1.8;
+    padding-left: 30px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080400;
+    border-top: 1px solid rgba(201,151,58,0.15);
+    padding: 52px 20px;
+    text-align: center;
+  }
+
+  .footer-brand {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 20px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .footer-text {
+    font-size: 13px;
+    color: rgba(201,151,58,0.4);
+    font-style: italic;
+  }
+
+  /* ── FLOATING CTA ── */
+  .floating-cta {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 100;
+    display: none;
+  }
+
+  .floating-cta.visible { display: block; }
+
+  .floating-cta a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    color: var(--brown-dark);
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 14px 24px;
+    text-decoration: none;
+    box-shadow: 0 8px 32px rgba(201,151,58,0.4);
+    border-radius: 2px;
+    transition: transform 0.3s;
+    animation: float-cta 3s ease-in-out infinite;
+  }
+
+  .floating-cta a:hover { transform: translateY(-3px); }
+
+  @keyframes float-cta {
+    0%, 100% { box-shadow: 0 8px 32px rgba(201,151,58,0.4); }
+    50% { box-shadow: 0 14px 44px rgba(201,151,58,0.65); }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .price-box { padding: 48px 28px; }
+    .quote-box { padding: 52px 24px; }
+    .recipe-card { padding: 28px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- FLOATING CTA -->
+<div class="floating-cta" id="floatCTA">
+  <a href="#oferta">🕊️ Quero as Receitas</a>
+</div>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-ornament">✦ ✦ ✦</div>
+  <p class="hero-eyebrow">Um Tesouro da Terra Santa</p>
+  <h1 class="hero-title">
+    A Mesa de Jesus
+    <span>Receitas Sagradas da Galileia</span>
+  </h1>
+  <div class="hero-divider">
+    <div class="line"></div>
+    <span class="star">✦</span>
+    <div class="line"></div>
+  </div>
+  <p class="hero-sub">
+    Descubra os sabores autênticos que Jesus, seus apóstolos e o povo de Israel
+    saboreavam há mais de dois mil anos — com contexto histórico e espiritual em cada receita.
+  </p>
+  <a href="#oferta" class="btn-cta">Quero Meu Exemplar Agora</a>
+  <div class="hero-scroll">↓</div>
+</section>
+
+<!-- ══════════ FEATURES ══════════ -->
+<div class="features-strip">
+  <div class="features-grid">
+    <div class="feature-item reveal">
+      <span class="icon">📜</span>
+      <h3>Embasamento Bíblico</h3>
+      <p>Cada receita acompanha a passagem das Escrituras que a menciona ou contextualiza.</p>
+    </div>
+    <div class="feature-item reveal">
+      <span class="icon">🌿</span>
+      <h3>Ingredientes Reais</h3>
+      <p>Adaptações fiéis usando ervas, grãos e especiarias citadas na Bíblia.</p>
+    </div>
+    <div class="feature-item reveal">
+      <span class="icon">🏺</span>
+      <h3>História Viva</h3>
+      <p>Contexto histórico detalhado sobre a culinária da Palestina do século I.</p>
+    </div>
+    <div class="feature-item reveal">
+      <span class="icon">✝️</span>
+      <h3>Profundidade Espiritual</h3>
+      <p>Reflexões devocionais que transformam cada refeição em momento de fé.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ RECEITAS PREVIEW ══════════ -->
+<section class="recipes-section">
+  <div class="container">
+    <span class="section-label reveal">Prévia das Receitas</span>
+    <h2 class="section-title reveal">Sabores que Tocaram a História</h2>
+    <div class="divider reveal">
+      <div class="line"></div><span class="cross">✦</span><div class="line"></div>
+    </div>
+    <p class="section-sub reveal">
+      Uma seleção das mais de 40 receitas que compõem este tesouro gastronômico e espiritual.
+    </p>
+
+    <div class="recipes-grid">
+      <div class="recipe-card reveal">
+        <span class="recipe-emoji">🍞</span>
+        <span class="recipe-tag">Pão & Grãos</span>
+        <h3 class="recipe-name">Pão de Cevada da Multiplicação</h3>
+        <p class="recipe-desc">O humilde pão de cevada que Jesus multiplicou para cinco mil pessoas à beira do Mar da Galileia.</p>
+        <p class="recipe-verse">📖 João 6:9 — "Aqui está um rapaz que tem cinco pães de cevada..."</p>
+      </div>
+
+      <div class="recipe-card reveal">
+        <span class="recipe-emoji">🐟</span>
+        <span class="recipe-tag">Peixes & Mar</span>
+        <h3 class="recipe-name">Peixe Assado da Ressurreição</h3>
+        <p class="recipe-desc">A mesma preparação simples que Jesus compartilhou com os discípulos na praia após ressuscitar.</p>
+        <p class="recipe-verse">📖 Lucas 24:42 — "Eles lhe deram um pedaço de peixe assado..."</p>
+      </div>
+
+      <div class="recipe-card reveal">
+        <span class="recipe-emoji">🫒</span>
+        <span class="recipe-tag">Azeites & Óleos</span>
+        <h3 class="recipe-name">Homus da Galileia Antiga</h3>
+        <p class="recipe-desc">Grão-de-bico moído com azeite de oliva e especiarias, alimento básico dos camponeses galileus.</p>
+        <p class="recipe-verse">📖 Rute 2:14 — "Mergulha teu pão no vinagre..."</p>
+      </div>
+
+      <div class="recipe-card reveal">
+        <span class="recipe-emoji">🍷</span>
+        <span class="recipe-tag">A Santa Ceia</span>
+        <h3 class="recipe-name">Cordeiro Pascal de Páscoa</h3>
+        <p class="recipe-desc">A Seder Pesach completa — o cordeiro, as ervas amargas e o pão ázimo da última ceia de Jesus.</p>
+        <p class="recipe-verse">📖 Mateus 26:19 — "Os discípulos prepararam a Páscoa..."</p>
+      </div>
+
+      <div class="recipe-card reveal">
+        <span class="recipe-emoji">🍯</span>
+        <span class="recipe-tag">Doces & Mel</span>
+        <h3 class="recipe-name">Mel Silvestre com Gafanhotos de João</h3>
+        <p class="recipe-desc">O alimento de João Batista no deserto — proteína do deserto com mel silvestre das colmeias judaicas.</p>
+        <p class="recipe-verse">📖 Marcos 1:6 — "João se alimentava de gafanhotos e mel silvestre..."</p>
+      </div>
+
+      <div class="recipe-card reveal">
+        <span class="recipe-emoji">🌾</span>
+        <span class="recipe-tag">Festividades</span>
+        <h3 class="recipe-name">Sopa de Lentilhas de Esaú</h3>
+        <p class="recipe-desc">A sopa tão preciosa que Esaú trocou por toda a sua herança — sabor vermelho e reconfortante.</p>
+        <p class="recipe-verse">📖 Gênesis 25:34 — "Jacó deu-lhe pão e o guisado de lentilhas..."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ QUOTE ══════════ -->
+<section class="quote-section">
+  <div class="container">
+    <div class="quote-box reveal">
+      <p class="quote-text">
+        "Não só de pão viverá o homem, mas de toda palavra que procede da boca de Deus."
+      </p>
+      <span class="quote-ref">— Mateus 4:4 &nbsp;✦&nbsp; Deuteronômio 8:3</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ O QUE ESTÁ INCLUSO ══════════ -->
+<section class="inside-section">
+  <div class="container">
+    <span class="section-label reveal">O que você recebe</span>
+    <h2 class="section-title reveal">Tudo que Está no Livro</h2>
+    <div class="divider reveal">
+      <div class="line"></div><span class="cross">✦</span><div class="line"></div>
+    </div>
+
+    <div class="inside-list">
+      <div class="inside-item reveal">
+        <span class="num">01</span>
+        <div>
+          <h4>Mais de 40 Receitas Autênticas</h4>
+          <p>Pães, sopas, peixes, carnes, doces e bebidas da culinária do Oriente Médio antigo, fiéis aos textos bíblicos e arqueológicos.</p>
+        </div>
+      </div>
+      <div class="inside-item reveal">
+        <span class="num">02</span>
+        <div>
+          <h4>Contexto Histórico & Arqueológico</h4>
+          <p>Cada receita acompanha uma explicação sobre como viviam, cultivavam e cozinhavam os habitantes da Palestina no século I d.C.</p>
+        </div>
+      </div>
+      <div class="inside-item reveal">
+        <span class="num">03</span>
+        <div>
+          <h4>Passagens Bíblicas Comentadas</h4>
+          <p>Versículos relacionados à alimentação e às refeições de Jesus com reflexões devocionais profundas.</p>
+        </div>
+      </div>
+      <div class="inside-item reveal">
+        <span class="num">04</span>
+        <div>
+          <h4>Guia de Ervas e Especiarias Bíblicas</h4>
+          <p>Um glossário completo com todas as plantas, grãos e temperos mencionados nas Escrituras e como encontrá-los hoje.</p>
+        </div>
+      </div>
+      <div class="inside-item reveal">
+        <span class="num">05</span>
+        <div>
+          <h4>Calendário de Festas e Refeições Sagradas</h4>
+          <p>Guia das festas judaicas — Páscoa, Pentecostes, Tabernáculos — e as refeições que Jesus celebrou em cada uma delas.</p>
+        </div>
+      </div>
+      <div class="inside-item reveal">
+        <span class="num">06</span>
+        <div>
+          <h4>Acesso Digital Imediato + Versão Impressa</h4>
+          <p>Baixe o PDF em instantes e receba a edição física com acabamento premium na sua casa.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ OFERTA ══════════ -->
+<section class="offer-section" id="oferta">
+  <div class="container" style="text-align:center;">
+    <span class="section-label reveal">Oferta Especial de Lançamento</span>
+    <h2 class="section-title reveal">Leve Este Tesouro Para Sua Mesa</h2>
+    <div class="divider reveal">
+      <div class="line"></div><span class="cross">✦</span><div class="line"></div>
+    </div>
+
+    <div class="price-box reveal" style="margin: 0 auto;">
+      <div class="offer-badge">🕊️ Promoção de Lançamento</div>
+      <p class="price-old">De R$ 97,00</p>
+      <p class="price-main"><sup>R$</sup>47<sub>,00</sub></p>
+      <p class="price-note">Acesso digital imediato + Frete grátis na versão impressa</p>
+      <a href="#" class="btn-cta" style="opacity:1; animation:none; display:block; text-align:center;">
+        ✦ Garantir Meu Exemplar Agora ✦
+      </a>
+      <p class="price-guarantee">🔒 Garantia de 30 dias — satisfação total ou seu dinheiro de volta</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TESTEMUNHOS ══════════ -->
+<section class="testimonials">
+  <div class="container">
+    <span class="section-label reveal">Depoimentos</span>
+    <h2 class="section-title reveal">O Que Dizem Nossos Leitores</h2>
+    <div class="divider reveal">
+      <div class="line"></div><span class="cross">✦</span><div class="line"></div>
+    </div>
+
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <span class="stars">★★★★★</span>
+        <p class="testi-text">"Preparei o pão de cevada para a ceia de família na Páscoa. A emoção foi indescritível — sentimos que estávamos à mesa com Jesus."</p>
+        <span class="testi-author">— Maria Aparecida, São Paulo – SP</span>
+      </div>
+      <div class="testi-card reveal">
+        <span class="stars">★★★★★</span>
+        <p class="testi-text">"Como pastor, uso as receitas em retiros. A combinação de culinária, Bíblia e história transforma a experiência espiritual completamente."</p>
+        <span class="testi-author">— Pr. João Carlos, Belo Horizonte – MG</span>
+      </div>
+      <div class="testi-card reveal">
+        <span class="stars">★★★★★</span>
+        <p class="testi-text">"Nunca imaginei que cozinhar pudesse ser um ato de devoção. Este livro mudou minha relação com a Palavra e com a cozinha."</p>
+        <span class="testi-author">— Fernanda Luz, Curitiba – PR</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FAQ ══════════ -->
+<section class="faq-section">
+  <div class="container">
+    <span class="section-label reveal">Dúvidas Frequentes</span>
+    <h2 class="section-title reveal">Perguntas e Respostas</h2>
+    <div class="divider reveal">
+      <div class="line"></div><span class="cross">✦</span><div class="line"></div>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <p class="faq-q"><span class="faq-icon">✦</span> Os ingredientes são difíceis de encontrar?</p>
+        <p class="faq-a">Não. Cada receita traz versões com ingredientes facilmente encontrados em supermercados brasileiros, além da versão original com especiarias orientais disponíveis online.</p>
+      </div>
+      <div class="faq-item reveal">
+        <p class="faq-q"><span class="faq-icon">✦</span> Preciso ter experiência culinária?</p>
+        <p class="faq-a">De forma alguma. As receitas são explicadas passo a passo, do iniciante ao cozinheiro experiente, com dicas e variações para todos os níveis.</p>
+      </div>
+      <div class="faq-item reveal">
+        <p class="faq-q"><span class="faq-icon">✦</span> É um produto com base histórica ou apenas simbólico?</p>
+        <p class="faq-a">Ambos. Cada receita é fundamentada em pesquisa arqueológica e textos bíblicos, ao mesmo tempo em que traz reflexão espiritual. Um trabalho sério que honra a fé e a história.</p>
+      </div>
+      <div class="faq-item reveal">
+        <p class="faq-q"><span class="faq-icon">✦</span> Como recebo após a compra?</p>
+        <p class="faq-a">Você recebe o PDF imediatamente por e-mail e, se optar pela versão física, o prazo de entrega é de 5 a 10 dias úteis, com frete grátis para todo o Brasil.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <p class="footer-brand">A Mesa de Jesus</p>
+  <p class="footer-text">© 2025 — Todos os direitos reservados &nbsp;✦&nbsp; Receitas Bíblicas da Terra Santa</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Floating CTA
+  const floatCTA = document.getElementById('floatCTA');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 600) floatCTA.classList.add('visible');
+    else floatCTA.classList.remove('visible');
+  });
+</script>
+</body>
+</html>
